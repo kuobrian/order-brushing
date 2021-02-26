@@ -65,18 +65,20 @@ kmeans = KMeans(n_clusters=2)
 df['label'] = kmeans.fit_predict(df[['date']])
 # print(df)
 
-# ax = df[df['label']==0].plot.scatter(x='date', y='label', s=50, color='white', edgecolor='black')
-# df[df['label']==1].plot.scatter(x='date', y='label', s=50, color='white', ax=ax, edgecolor='red')
-# plt.scatter(kmeans.cluster_centers_.ravel(), [0.5]*len(kmeans.cluster_centers_), s=100, color='green', marker='*')
+ax = df[df['label']==0].plot.scatter(x='date', y='label', s=50, color='white', edgecolor='black')
+df[df['label']==1].plot.scatter(x='date', y='label', s=50, color='white', ax=ax, edgecolor='red')
+plt.scatter(kmeans.cluster_centers_.ravel(), [0.5]*len(kmeans.cluster_centers_), s=100, color='green', marker='*')
 
-# print(df["date"].diff())
-# print(df["date"].diff() > pd.Timedelta(minutes=30))
-# print((df["date"].diff() > pd.Timedelta(minutes=30)).cumsum())
-# df = df.sort_values('date')
-# cluster = (df["date"].diff() > pd.Timedelta(minutes=30)).cumsum()
-# dfs = [v for k,v in df.groupby(cluster)]
-# for clust in dfs:
-#     print(clust)
+print(df["date"].diff())
+print(df["date"].diff() > pd.Timedelta(minutes=30))
+print((df["date"].diff() > pd.Timedelta(minutes=30)).cumsum())
+df = df.sort_values('date')
+cluster = (df["date"].diff() > pd.Timedelta(minutes=30)).cumsum()
+dfs = [v for k,v in df.groupby(cluster)]
+for clust in dfs:
+    print(clust)
+
+assert(0)
 
 ##################################################################################
 
@@ -103,8 +105,9 @@ cluster_centers = ms.cluster_centers_
 labels_unique = np.unique(labels)
 n_clusters_ = len(labels_unique)
 
-# print("number of estimated clusters : %d" % n_clusters_)
-# print(labels)
+print("number of estimated clusters : %d" % n_clusters_)
+print(labels)
+assert(0)
 
 ##################################################################################
 
